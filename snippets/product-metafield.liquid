@@ -1,6 +1,8 @@
-{% if product.metafields.custom.care_guide %}
+
   <div class="care-guide">
-    <h3>Guía de cuidado</h3>
-    <p>{{ product.metafields.custom.care_guide }}</p>
-  </div>
+    {% if product.metafields.test_data.snowboard_length %}
+  <p>Longitud de la snowboard: 
+    {{ product.metafields.test_data.snowboard_length.value }}
+  </p>
 {% endif %}
+  </div>

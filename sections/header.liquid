@@ -1,0 +1,55 @@
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
+
+<header class="site-header">
+  <div class="container header-container">
+    <!-- Logo -->
+    <div class="header-logo">
+      <a href="{{ routes.root_url }}">
+        {% if section.settings.logo %}
+          <img width="auto" height="auto" src="{{ section.settings.logo | image_url: width: 150 }}" alt="{{ shop.name }}">
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="header-nav">
+      <ul>
+        {% for link in linklists[section.settings.menu].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <!-- Carrito -->
+    <div class="header-cart">
+      <button id="open-cart" class="cart-link">
+        🛒 <span class="cart-count">{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Encabezado",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú de navegación"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Encabezado simple"
+    }
+  ]
+}
+{% endschema %}

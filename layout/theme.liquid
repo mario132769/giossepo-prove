@@ -4,15 +4,22 @@
   <meta charset="utf-8">
   <title>{{ page_title }}</title>
   {{ content_for_header }}
+  <style>
+  :root {
+    --font-family: {{ settings.font_family.family }}, sans-serif;
+    --base-font-size: {{ settings.base_font_size }}px;
+    --text-color: {{ settings.text_color }};
+    --background-color: {{ settings.background_color }};
+    --accent-color: {{ settings.accent_color }};
+    --container-width: {{ settings.container_width }};
+  }
+</style>
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'theme.js' | asset_url }}" >
 </head>
 <body>
-
   {% section 'header' %}
-
   {{ content_for_layout }}
-
-  {% section 'footer' %}
 
   {% render 'cart-drawer' %}
 

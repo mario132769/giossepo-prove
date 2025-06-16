@@ -1,20 +1,22 @@
 <div class="product">
-  <img src="{{ product.featured_image | image_url }}">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <div class="description">
-    {{ product.description }}
+  <img width="600" height="600" src="{{ product.featured_image | image_url }}">
+  <div class="product-info">
+    <h1>{{ product.title }}</h1>
+    <p>{{ product.price | money }}</p>
+    <div class="description">
+      {{ product.description }}
+    </div>
+
+    
+
+    <details>
+      <summary>Detalles del producto</summary>
+      {% render 'product-metafield' %}
+    </details>
+
+    <form method="post" action="{{ routes.cart_add_url }}">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <button type="submit">Añadir al carrito</button>
+    </form> 
   </div>
-
-  {% render 'product-metafield' %}
-
-  <details>
-    <summary>Detalles del producto</summary>
-    <p>{{ product.metafields.custom.details }}</p>
-  </details>
-
-  <form method="post" action="/cart/add">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-    <button type="submit">Añadir al carrito</button>
-  </form>
 </div>

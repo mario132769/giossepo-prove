@@ -1,6 +1,52 @@
 [
   {
     "name": "General",
-    "settings": []
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_family",
+        "label": "Fuente principal",
+        "default": "helvetica_n4",
+      },
+      {
+        "type": "range",
+        "id": "base_font_size",
+        "label": "Tamaño base del texto",
+        "min": 12,
+        "max": 24,
+        "step": 1,
+        "default": 16,
+        "unit": "px"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Color de fondo",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Color del texto",
+        "default": "#222222"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Color de acento",
+        "default": "#ff6600"
+      },
+      {
+        "type": "select",
+        "id": "container_width",
+        "label": "Ancho del contenedor",
+        "default": "1200px",
+        "options": [
+          { "value": "1000px", "label": "Estrecho (1000px)" },
+          { "value": "1200px", "label": "Medio (1200px)" },
+          { "value": "1400px", "label": "Ancho (1400px)" }
+        ]
+      }
+    ]
   }
 ]

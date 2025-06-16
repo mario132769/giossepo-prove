@@ -1,6 +1,14 @@
-<div class="banner" style="background-image: url({{ section.settings.image | image_url }});">
-  <h1>{{ section.settings.heading }}</h1>
-  <p>{{ section.settings.subheading }}</p>
+{{ 'section-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="banner-section" style="background-image: url({{ section.settings.image | image_url }});">
+  <div class="banner-overlay" style="background-color: {{ section.settings.overlay_color }}; opacity: {{ section.settings.overlay_opacity }};"></div>
+  <div class="banner-content banner-align-{{ section.settings.text_position }}">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.subheading }}</p>
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}" class="banner-button">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
 </div>
 
 {% schema %}
@@ -21,6 +29,47 @@
       "type": "text",
       "id": "subheading",
       "label": "Subtítulo"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Color del overlay",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Opacidad del overlay",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.5
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Alineación del texto",
+      "options": [
+        { "value": "left", "label": "Izquierda" },
+        { "value": "center", "label": "Centro" },
+        { "value": "right", "label": "Derecha" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto del botón"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Enlace del botón"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner principal"
     }
   ]
 }
